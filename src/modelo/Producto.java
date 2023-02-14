@@ -49,10 +49,8 @@ public class Producto {
 	@Override
 	public String toString() {
 		
-		return String.format("-----------------------------------------------------------\n"
-        		+ "| %-15s |%5s Centimos    | %10s Unidades|\n"
-        		+ "-----------------------------------------------------------\n",
-        		
+		return String.format(
+        		".  %-15s %-5s centimos     %10s Unidades\n",
                 nombre, precio, cantidad);
                 
 	}
