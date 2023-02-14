@@ -23,11 +23,11 @@ public class Billetero {
 	}
 	
 	public void inicializarMonedas() {
-	    monedas.add(new Moneda(1));
-	    monedas.add(new Moneda(2));
-	    monedas.add(new Moneda(10));
-	    monedas.add(new Moneda(20));
-	    monedas.add(new Moneda(50));
+	    monedas.add(new Moneda(1,40));
+	    monedas.add(new Moneda(2,40));
+	    monedas.add(new Moneda(10,40));
+	    monedas.add(new Moneda(20,40));
+	    monedas.add(new Moneda(50,40));
 	}
 
     public int calcularTotal() {
