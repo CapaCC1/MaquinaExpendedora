@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 	public class Maquina {
 	
-		private Billetero billetero;
+		private Monedero monedero;
 		private ArrayList<Producto> productosDisponibles = new ArrayList<Producto>();
 	    private String passwordMantenimiento;
 	    private Dispensador dispensador;
 	    
 	    
-		public Maquina(Billetero billetero, ArrayList<Producto> productosDisponibles, String passwordMantenimiento, Dispensador dispensador) {
-			this.billetero = billetero;
+		public Maquina(Monedero monedero, ArrayList<Producto> productosDisponibles, String passwordMantenimiento, Dispensador dispensador) {
+			this.monedero = monedero;
 			this.productosDisponibles = productosDisponibles;
 			this.passwordMantenimiento = passwordMantenimiento;
 			this.dispensador = dispensador;
@@ -28,12 +28,12 @@ import java.util.ArrayList;
 		public Maquina() {
 	    	
 	    }
-		public Billetero getBilletero() {
-			return billetero;
+		public Monedero getMonedero() {
+			return monedero;
 		}
 
-		public void setBilletero(Billetero billetero) {
-			this.billetero = billetero;
+		public void setMonedero(Monedero monedero) {
+			this.monedero = monedero;
 		}
 
 		public String getPasswordMantenimiento() {

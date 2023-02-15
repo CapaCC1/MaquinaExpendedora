@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Dispensador {
 	
-	
 	private ArrayList<Integer> cambioDisponible = new ArrayList<Integer>();
 	
 	public Dispensador( ArrayList<Integer> cambioDisponible) {
@@ -22,7 +21,6 @@ public class Dispensador {
 	public Dispensador() {
 		
 	}
-	
 	
 	 public int getCambioDisponible(int valor) {
 	        if (valor < 1 || valor > 50 || valor % 1 != 0) {

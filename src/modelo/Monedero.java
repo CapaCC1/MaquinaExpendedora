@@ -2,11 +2,11 @@ package modelo;
 
 import java.util.ArrayList;
 
-public class Billetero {
+public class Monedero {
 	private ArrayList<Moneda> monedas;
 	private int cantidadMaximaMonedas;
 	
-	public Billetero(ArrayList<Moneda> monedas, int cantidadMaximaMonedas) {
+	public Monedero(ArrayList<Moneda> monedas, int cantidadMaximaMonedas) {
 		monedas = new ArrayList<>();
 		this.cantidadMaximaMonedas = cantidadMaximaMonedas;
 	}
@@ -51,7 +51,7 @@ public class Billetero {
 		return false;
     }
     
-    public void vaciarBilletero() {
+    public void vaciarMonedero() {
         monedas.clear();
     }
 }
