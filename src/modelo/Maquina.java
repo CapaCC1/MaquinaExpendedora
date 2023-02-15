@@ -63,25 +63,7 @@ import java.util.ArrayList;
 			
 		}
 		
-		public String buscarProductoPorPosicion(int posicion) {
-		    if (posicion >= 0 && posicion < productosDisponibles.size()) {
-		        Producto producto = productosDisponibles.get(posicion);
-		        int cantidad = producto.getCantidad();
-		        
-		        if (cantidad > 0) {
-		            producto.setCantidad(cantidad - 1);
-		            return producto.toString();
-		            
-		        } else {
-		            return "\nEl producto en la posición " + posicion + " esta AGOTADO.\n";
-		        }
-		    } else {
-		        return "\nLa posición " + posicion + " no EXISTE.\n";
-		    }
-		}
-		
-		
-		public Producto buscarProductoPorPosicion1(int posicion) {
+		private Producto buscarProductoPorPosicion(int posicion) {
 		    if (posicion >= 0 && posicion < productosDisponibles.size()) {
 		        Producto producto = productosDisponibles.get(posicion);
 		        int cantidad = producto.getCantidad();
@@ -98,35 +80,35 @@ import java.util.ArrayList;
 		    }
 		}
 		
-		public boolean tieneProducto(int posicion) {
+		private boolean tieneProducto(int posicion) {
 		    if (posicion < 0 || posicion >= productosDisponibles.size()) {
-		        System.out.println("La posición ingresada no es válida");
 		        return false;
 		    }
 		    Producto producto = productosDisponibles.get(posicion);
 		    if (producto.getCantidad() > 0) {
 		        return true;
 		    } else {
-		        System.out.println("El producto " + producto.getNombre() + " no está disponible");
 		        return false;
 		    }
 		}
 		
-		public void comprarProducto(int numeroProducto, int saldo) {
-		    Producto producto = buscarProductoPorPosicion1(numeroProducto);
-		    int precioProducto = producto.getPrecio();
+		public String comprarProducto(int numeroProducto, int saldo) {
+			
+		    String resultado = "";
+		    if (tieneProducto(numeroProducto) == true) {
+		    	Producto producto = buscarProductoPorPosicion(numeroProducto);
+		    	int precioProducto = producto.getPrecio();
 		    
-		    if (precioProducto <= saldo) {
-		        if (tieneProducto(numeroProducto) == true) {
-		            buscarProductoPorPosicion(precioProducto);
+		    	if (precioProducto <= saldo) {
 		            saldo -= precioProducto;
-		            System.out.println("Producto " + producto.getNombre() + " comprado. Su cambio es: " + saldo);
-		        } else {
-		            System.out.println("Lo siento, el producto " + producto.getNombre() + " está agotado.");
+		            resultado += "\nProducto " + producto.getNombre() + " comprado. Su cambio es: " + saldo + "\n";
+		        } else{
+		        	resultado+= "\nLo siento, no tienes suficiente saldo.\n";
 		        }
 		    } else {
-		        System.out.println("Saldo insuficiente. El precio del producto es " + precioProducto + " y su saldo es " + saldo);
+		    	resultado += "\nEl producto NO Esta Disponible!\n";
 		    }
+		    return resultado;
 		}
 		
 		@Override

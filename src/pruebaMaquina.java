@@ -20,7 +20,7 @@ public class pruebaMaquina {
 		System.out.println("Introduce monedas exactas");
 		int monedaIntroducida = in1.nextInt();
 		
-		maquina1.comprarProducto(opcion, monedaIntroducida);
+		System.out.println(maquina1.comprarProducto(opcion, monedaIntroducida));
 		
 		}
 		
