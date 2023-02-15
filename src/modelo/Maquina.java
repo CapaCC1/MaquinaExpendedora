@@ -10,7 +10,6 @@ import java.util.ArrayList;
 	    private Dispensador dispensador;
 	    
 	    
-
 		public Maquina(Billetero billetero, ArrayList<Producto> productosDisponibles, String passwordMantenimiento, Dispensador dispensador) {
 			this.billetero = billetero;
 			this.productosDisponibles = productosDisponibles;
@@ -64,13 +63,43 @@ import java.util.ArrayList;
 			
 		}
 		
-		public Producto buscarProductoPorPosicion(int posicion) {
+		public String buscarProductoPorPosicion(int posicion) {
 		    if (posicion >= 0 && posicion < productosDisponibles.size()) {
-		        return productosDisponibles.get(posicion);
+		        Producto producto = productosDisponibles.get(posicion);
+		        int cantidad = producto.getCantidad();
+		        
+		        if (cantidad > 0) {
+		            producto.setCantidad(cantidad - 1);
+		            return producto.toString();
+		            
+		        } else {
+		            return "\nEl producto en la posición " + posicion + " esta AGOTADO.\n";
+		        }
 		    } else {
-		        return null; // La posición está fuera del rango del ArrayList
+		        return "\nLa posición " + posicion + " no EXISTE.\n";
 		    }
 		}
+		
+		
+		public Producto buscarProductoPorPosicion1(int posicion) {
+		    if (posicion >= 0 && posicion < productosDisponibles.size()) {
+		        Producto producto = productosDisponibles.get(posicion);
+		        int cantidad = producto.getCantidad();
+		        
+		        if (cantidad > 0) {
+		            producto.setCantidad(cantidad - 1);
+		            return producto;
+		            
+		        } else {
+		            return null;
+		        }
+		    } else {
+		    	return null;
+		    }
+		}
+		
+		
+		
 		
 		@Override
 		public String toString() {

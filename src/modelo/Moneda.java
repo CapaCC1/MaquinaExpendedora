@@ -26,4 +26,5 @@ public class Moneda {
 		this.valor = valor;
 	}
 	
+	
 }

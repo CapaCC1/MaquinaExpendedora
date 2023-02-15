@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Billetero {
 	private ArrayList<Moneda> monedas;
 	private int cantidadMaximaMonedas;
+	
 	public Billetero(ArrayList<Moneda> monedas, int cantidadMaximaMonedas) {
 		monedas = new ArrayList<>();
 		this.cantidadMaximaMonedas = cantidadMaximaMonedas;
@@ -37,7 +38,19 @@ public class Billetero {
         }
         return total;
     }
-
+    
+    public boolean comprobarMoneda(int monedaIntroducida) {
+    	
+    	for (Moneda moneda : monedas) {
+    		if(moneda.getValor() == monedaIntroducida) {
+    			return true;
+    		}else {
+    		}
+    		return false;
+		}
+		return false;
+    }
+    
     public void vaciarBilletero() {
         monedas.clear();
     }
