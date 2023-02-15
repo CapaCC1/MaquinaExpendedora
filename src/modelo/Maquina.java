@@ -98,8 +98,36 @@ import java.util.ArrayList;
 		    }
 		}
 		
+		public boolean tieneProducto(int posicion) {
+		    if (posicion < 0 || posicion >= productosDisponibles.size()) {
+		        System.out.println("La posición ingresada no es válida");
+		        return false;
+		    }
+		    Producto producto = productosDisponibles.get(posicion);
+		    if (producto.getCantidad() > 0) {
+		        return true;
+		    } else {
+		        System.out.println("El producto " + producto.getNombre() + " no está disponible");
+		        return false;
+		    }
+		}
 		
-		
+		public void comprarProducto(int numeroProducto, int saldo) {
+		    Producto producto = buscarProductoPorPosicion1(numeroProducto);
+		    int precioProducto = producto.getPrecio();
+		    
+		    if (precioProducto <= saldo) {
+		        if (tieneProducto(numeroProducto) == true) {
+		            buscarProductoPorPosicion(precioProducto);
+		            saldo -= precioProducto;
+		            System.out.println("Producto " + producto.getNombre() + " comprado. Su cambio es: " + saldo);
+		        } else {
+		            System.out.println("Lo siento, el producto " + producto.getNombre() + " está agotado.");
+		        }
+		    } else {
+		        System.out.println("Saldo insuficiente. El precio del producto es " + precioProducto + " y su saldo es " + saldo);
+		    }
+		}
 		
 		@Override
 		public String toString() {
