@@ -2,14 +2,30 @@ package modelo;
 
 import java.util.ArrayList;
 
-	public class Maquina {
+public class Maquina {
 	
 		private Monedero monedero;
-		private ArrayList<Producto> productosDisponibles = new ArrayList<Producto>();
-	    private Dispensador dispensador;
-	    private int saldo;
-	    
-	    
+		private Dispensador dispensador;
+		private int saldo;
+
+		public Maquina(Monedero monedero, ArrayList<Producto> productosDisponibles, int saldo) {
+        this.monedero = monedero;
+        this.dispensador = new Dispensador(productosDisponibles);
+        this.saldo = 0;
+		}
+		
+	    public Maquina() {
+	    	monedero = new Monedero();
+	    	dispensador = new Dispensador();
+	    	Producto producto1 = new Producto("Coca Cola", 120, 10);
+	    	Producto producto2 = new Producto("Agua",80,10);
+	    	Producto producto3 = new Producto("Fanta",100,10);
+	    	Producto producto4 = new Producto("Red Bull",160,10);
+	    	dispensador.agregarProducto(producto1);
+	    	dispensador.agregarProducto(producto2);
+	    	dispensador.agregarProducto(producto3);
+	    	dispensador.agregarProducto(producto4);
+	    }
 		public int getSaldo() {
 			return saldo;
 		}
@@ -18,12 +34,6 @@ import java.util.ArrayList;
 			this.saldo = saldo;
 		}
 
-		public Maquina(Monedero monedero, ArrayList<Producto> productosDisponibles, Dispensador dispensador, int saldo) {
-			this.monedero = monedero;
-			this.productosDisponibles = productosDisponibles;
-			this.dispensador = dispensador;
-			this.saldo = 0;
-		}
 	    
 	    public Dispensador getDispensador() {
 			return dispensador;
@@ -33,84 +43,40 @@ import java.util.ArrayList;
 			this.dispensador = dispensador;
 		}
 
-		public Maquina() {
-	    	monedero = new Monedero();
-	    }
+		
 		public Monedero getMonedero() {
 			return monedero;
+			
 		}
 
 		public void setMonedero(Monedero monedero) {
 			this.monedero = monedero;
 		}
-
-		
-		public ArrayList<Producto> getProductosDisponibles() {
-			return productosDisponibles;
-		}
-
-		public void setProductosDisponibles(ArrayList<Producto> productosDisponibles) {
-			this.productosDisponibles = productosDisponibles;
-		}
-		
-		public void crearProducto() {
-			Producto producto1 = new Producto("Coca Cola", 120, 10);
-			Producto producto2 = new Producto("Agua",80,10);
-			Producto producto3 = new Producto("Fanta",100,10);
-			Producto producto4 = new Producto("Red Bull",160,10);
-			productosDisponibles.add(producto1);
-			productosDisponibles.add(producto2);
-			productosDisponibles.add(producto3);
-			productosDisponibles.add(producto4);	
-			
-		}
-		
-		private Producto buscarProductoPorPosicion(int posicion) {
-		    if (posicion >= 0 && posicion < productosDisponibles.size()) {
-		        Producto producto = productosDisponibles.get(posicion);
-		        int cantidad = producto.getCantidad();
-		        
-		        if (cantidad > 0) {
-		            producto.setCantidad(cantidad - 1);
-		            return producto;
-		            
-		        } else {
-		            return null;
-		        }
-		    } else {
-		    	return null;
-		    }
-		}
-		
-		private boolean tieneProducto(int posicion) {
-		    if (posicion < 0 || posicion >= productosDisponibles.size()) {
-		        return false;
-		    }
-		    Producto producto = productosDisponibles.get(posicion);
-		    if (producto.getCantidad() > 0) {
-		        return true;
-		    } else {
-		        return false;
-		    }
-		}
-		
 		
 		public String comprarProducto(int numeroProducto, int valorMoneda) {
 		    String resultado = "";
-		    if (tieneProducto(numeroProducto)) {
-		        Producto producto = buscarProductoPorPosicion(numeroProducto);
+		    
+		    if (dispensador.tieneProducto(numeroProducto)) { // Si existe el producto
+		        Producto producto = dispensador.buscarProductoPorPosicion(numeroProducto);
 		        int precioProducto = producto.getPrecio();
-		        if (monedero.agregarMoneda(valorMoneda)) {
+		        
+		        if (monedero.comprobarMoneda(valorMoneda)) { // Si la moneda introducida es valida
 		            saldo += valorMoneda;
-		            resultado += "Saldo actual: " + saldo;
+		            resultado += "\nSaldo actual: " + saldo;
+		            
 		        } else {
-		           resultado += "Moneda no válida. Inténtalo de nuevo.";
+		           resultado += "\nMoneda no válida. Inténtalo de nuevo.\n";
+		           producto.setCantidad(producto.getCantidad() + 1);
 		            return resultado;
 		        }
-		        if (saldo >= precioProducto) {
+		        
+		        if (saldo >= precioProducto) { // Si el saldo es mayor o igual al precio del producto se devuelve el cambio y se dispensa el producto
+		        	
 		            saldo -= precioProducto;
-		            resultado += "\nProducto " + producto.getNombre() + " comprado. Su cambio es: " + saldo + "\n";
-		        } else {
+		            
+		            resultado += "\nGracias por su compra " + "\n\nPuede recoger su " + producto.getNombre() + "\n\nSu cambio es: " + monedero.devolverCambio(saldo) + "\n";
+		            
+		        } else { // Sino se pide que se introduzcan mas monedas
 		            resultado += "\nIntroduce más monedas.\n";
 
 		        }
@@ -120,17 +86,11 @@ import java.util.ArrayList;
 		    }
 		    return resultado;
 		}
-		
+
 		@Override
-		public String toString() {
-			int i = 0;
-			StringBuilder sb = new StringBuilder();
-			for (Producto producto : productosDisponibles) {
-				sb.append(i + producto.toString());
-				i++;
-			}
-			return sb.toString();
-		}
+		 public String toString() {
+		     return dispensador.toString();
 		
+		}
 }		
  
