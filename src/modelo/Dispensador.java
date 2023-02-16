@@ -21,7 +21,7 @@ public class Dispensador {
 		this.productosDisponibles = productosDisponibles;
 	}
 	
-	public boolean tieneProducto(int posicion) {
+	public boolean tieneProducto(int posicion) { //Metodo que busca si el producto esta en el arraylist segun su posicion
 	    if (posicion < 0 || posicion >= productosDisponibles.size()) {
 	        return false;
 	    }
@@ -38,7 +38,7 @@ public class Dispensador {
 	
 	
 	
-	public Producto buscarProductoPorPosicion(int posicion) {
+	public Producto buscarProductoPorPosicion(int posicion) { //Metodo que devuleve la informacion de un producto a partir de su posicion
 	    if (posicion >= 0 && posicion < productosDisponibles.size()) {
 	        Producto producto = productosDisponibles.get(posicion);
 	        int cantidad = producto.getCantidad();
@@ -54,7 +54,6 @@ public class Dispensador {
 	    	return null;
 	    }
 	}
-	  
 	 @Override
 	  public String toString() {
 			int i = 0;

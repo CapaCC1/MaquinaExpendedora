@@ -33,7 +33,6 @@ public class Maquina {
 		public void setSaldo(int saldo) {
 			this.saldo = saldo;
 		}
-
 	    
 	    public Dispensador getDispensador() {
 			return dispensador;
@@ -42,11 +41,9 @@ public class Maquina {
 		public void setDispensador(Dispensador dispensador) {
 			this.dispensador = dispensador;
 		}
-
 		
 		public Monedero getMonedero() {
-			return monedero;
-			
+			return monedero;	
 		}
 
 		public void setMonedero(Monedero monedero) {
@@ -86,7 +83,7 @@ public class Maquina {
 		    }
 		    return resultado;
 		}
-
+		
 		@Override
 		 public String toString() {
 		     return dispensador.toString();
