@@ -10,6 +10,10 @@ public class Monedero {
 		monedas = new ArrayList<>();
 		this.cantidadMaximaMonedas = cantidadMaximaMonedas;
 	}
+	
+	public Monedero() {
+        monedas = new ArrayList<Moneda>();
+    }
 	public ArrayList<Moneda> getMonedas() {
 		return monedas;
 	}
@@ -23,14 +27,30 @@ public class Monedero {
 		this.cantidadMaximaMonedas = cantidadMaximaMonedas;
 	}
 	
-	public void inicializarMonedas() {
-	    monedas.add(new Moneda(1,40));
-	    monedas.add(new Moneda(2,40));
-	    monedas.add(new Moneda(10,40));
-	    monedas.add(new Moneda(20,40));
-	    monedas.add(new Moneda(50,40));
+	public boolean agregarMoneda(int valorMoneda) {
+	    boolean monedaAceptada = false;
+	    switch (valorMoneda) {
+	        case 100: monedas.add(new Moneda(100,40));
+	        monedaAceptada = true;
+	        break;
+	        case 200: monedas.add(new Moneda(200,40));
+	        monedaAceptada = true;
+	        break;
+	        case 10:monedas.add(new Moneda(10,40));
+	        monedaAceptada = true;
+	        break;
+	        case 20:monedas.add(new Moneda(20,40));
+	        monedaAceptada = true;
+	        break;
+	        case 50:monedas.add(new Moneda(50,40));
+	        monedaAceptada = true;
+	        break;
+	        default:
+	            monedaAceptada = false;
+	            break;
+	    }
+	    return monedaAceptada;
 	}
-
     public int calcularTotal() {
         int total = 0;
         for (Moneda moneda : monedas) {

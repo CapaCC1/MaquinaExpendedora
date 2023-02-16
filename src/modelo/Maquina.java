@@ -6,15 +6,23 @@ import java.util.ArrayList;
 	
 		private Monedero monedero;
 		private ArrayList<Producto> productosDisponibles = new ArrayList<Producto>();
-	    private String passwordMantenimiento;
 	    private Dispensador dispensador;
+	    private int saldo;
 	    
 	    
-		public Maquina(Monedero monedero, ArrayList<Producto> productosDisponibles, String passwordMantenimiento, Dispensador dispensador) {
+		public int getSaldo() {
+			return saldo;
+		}
+
+		public void setSaldo(int saldo) {
+			this.saldo = saldo;
+		}
+
+		public Maquina(Monedero monedero, ArrayList<Producto> productosDisponibles, Dispensador dispensador, int saldo) {
 			this.monedero = monedero;
 			this.productosDisponibles = productosDisponibles;
-			this.passwordMantenimiento = passwordMantenimiento;
 			this.dispensador = dispensador;
+			this.saldo = 0;
 		}
 	    
 	    public Dispensador getDispensador() {
@@ -26,7 +34,7 @@ import java.util.ArrayList;
 		}
 
 		public Maquina() {
-	    	
+	    	monedero = new Monedero();
 	    }
 		public Monedero getMonedero() {
 			return monedero;
@@ -36,13 +44,7 @@ import java.util.ArrayList;
 			this.monedero = monedero;
 		}
 
-		public String getPasswordMantenimiento() {
-			return passwordMantenimiento;
-		}
-
-		public void setPasswordMantenimiento(String passwordMantenimiento) {
-			this.passwordMantenimiento = passwordMantenimiento;
-		}
+		
 		public ArrayList<Producto> getProductosDisponibles() {
 			return productosDisponibles;
 		}
@@ -92,21 +94,30 @@ import java.util.ArrayList;
 		    }
 		}
 		
-		public String comprarProducto(int numeroProducto, int saldo) {
-			
+		
+		public String comprarProducto(int numeroProducto, int valorMoneda) {
+			int saldo = 0;
 		    String resultado = "";
-		    if (tieneProducto(numeroProducto) == true) {
-		    	Producto producto = buscarProductoPorPosicion(numeroProducto);
-		    	int precioProducto = producto.getPrecio();
-		    
-		    	if (precioProducto <= saldo) {
+		    if (tieneProducto(numeroProducto)) {
+		        Producto producto = buscarProductoPorPosicion(numeroProducto);
+		        int precioProducto = producto.getPrecio();
+		        if (monedero.agregarMoneda(valorMoneda)) {
+		            saldo += valorMoneda;
+		            resultado += "Saldo actual: " + saldo;
+		        } else {
+		           resultado += "Moneda no válida. Inténtalo de nuevo.";
+		            return resultado;
+		        }
+		        if (saldo >= precioProducto) {
 		            saldo -= precioProducto;
 		            resultado += "\nProducto " + producto.getNombre() + " comprado. Su cambio es: " + saldo + "\n";
-		        } else{
-		        	resultado+= "\nLo siento, no tienes suficiente saldo.\n";
+		        } else {
+		            resultado += "\nIntroduce más monedas.\n";
+
 		        }
 		    } else {
-		    	resultado += "\nEl producto NO Esta Disponible!\n";
+		        resultado += "\nEl producto NO está disponible!\n";
+		        
 		    }
 		    return resultado;
 		}
@@ -118,7 +129,6 @@ import java.util.ArrayList;
 			for (Producto producto : productosDisponibles) {
 				sb.append(i + producto.toString());
 				i++;
-				
 			}
 			return sb.toString();
 		}
