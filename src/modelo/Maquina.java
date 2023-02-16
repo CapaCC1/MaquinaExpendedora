@@ -96,7 +96,6 @@ import java.util.ArrayList;
 		
 		
 		public String comprarProducto(int numeroProducto, int valorMoneda) {
-			int saldo = 0;
 		    String resultado = "";
 		    if (tieneProducto(numeroProducto)) {
 		        Producto producto = buscarProductoPorPosicion(numeroProducto);
