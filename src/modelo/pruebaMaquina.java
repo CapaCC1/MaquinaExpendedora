@@ -9,8 +9,6 @@ public class pruebaMaquina {
 			return true;
 		}
 	}
-	
-	
 	public static void main(String[] args) {
 		
 		Scanner in1 = new Scanner(System.in);
@@ -29,14 +27,12 @@ public class pruebaMaquina {
 			if (comprobarEntrada(opcion) == true) {
 				
 			while (!comprar) {
-				
 			        System.out.print("\nIntroduce una moneda de 1, 2, 10, 20 o 50 centimos: ");
 			        int valorMoneda = in1.nextInt();
 			        
 			        String resultado = maquina1.comprarProducto(opcion, valorMoneda);
 			        System.out.println(resultado);
-			        System.out.println(maquina1);
-			        
+			        System.out.println(maquina1);    
 			}
 			}else {
 				System.out.println("\nOpcion NO Disponible!\n");
@@ -47,7 +43,6 @@ public class pruebaMaquina {
 				System.out.println("Error, valor incorrecto");
 				comprar = false;
 				in1.next();
-				
 			}
 			}
 		in1.close();

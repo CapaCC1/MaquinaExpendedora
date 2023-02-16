@@ -27,7 +27,7 @@ public class Monedero {
 		this.cantidadMaximaMonedas = cantidadMaximaMonedas;
 	}
 	
-	public boolean comprobarMoneda(int valorMoneda) {
+	public boolean comprobarMoneda(int valorMoneda) { //Metodo que a partir de un valor entero comprueba si el valor es valido
 	    boolean monedaAceptada = false;
 	    switch (valorMoneda) {
 	        case 100: monedas.add(new Moneda(100,40));
@@ -61,7 +61,7 @@ public class Monedero {
     
    
     
-    public String devolverCambio(int cambio) {
+    public String devolverCambio(int cambio) { //Metodo para devolver el cambio segun un valor entero
     	String resultado = "";
     	
         int mon2Euros = cambio / 200; // Cantidad de monedas de 2 euros
