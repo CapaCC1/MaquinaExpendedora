@@ -21,7 +21,7 @@ public class Dispensador {
 		this.productosDisponibles = productosDisponibles;
 	}
 	
-	public boolean tieneProducto(int posicion) { //Metodo que busca si el producto esta en el arraylist segun su posicion
+	public boolean tieneProducto(int posicion) { //Metodo que busca si el producto esta disponible en el arraylist segun su posicion
 	    if (posicion < 0 || posicion >= productosDisponibles.size()) {
 	        return false;
 	    }

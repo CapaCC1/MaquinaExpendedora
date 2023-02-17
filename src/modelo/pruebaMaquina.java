@@ -16,10 +16,10 @@ public class pruebaMaquina {
 		boolean entrar = false;
 		Maquina maquina1 = new Maquina();
 		
+		System.out.println(maquina1);
 		while(!entrar) {
 			
 			try {
-			System.out.println(maquina1);
 				
 			System.out.print("Introduce la opcion deseada: ");
 			int opcion = in1.nextInt();
@@ -27,12 +27,16 @@ public class pruebaMaquina {
 			if (comprobarEntrada(opcion) == true) {
 				
 			while (!comprar) {
+					
+					
 			        System.out.print("\nIntroduce una moneda de 1, 2, 10, 20 o 50 centimos: ");
-			        int valorMoneda = in1.nextInt();
-			        
+			        int valorMoneda = in1.nextInt();		        
 			        String resultado = maquina1.comprarProducto(opcion, valorMoneda);
 			        System.out.println(resultado);
-			        System.out.println(maquina1);    
+					System.out.println(maquina1);
+			        if(resultado.contains("compra")) {
+			        	break;
+			        }
 			}
 			}else {
 				System.out.println("\nOpcion NO Disponible!\n");

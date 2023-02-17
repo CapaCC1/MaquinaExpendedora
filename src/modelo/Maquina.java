@@ -51,6 +51,7 @@ public class Maquina {
 		}
 		
 		public String comprarProducto(int numeroProducto, int valorMoneda) {
+			
 		    String resultado = "";
 		    
 		    if (dispensador.tieneProducto(numeroProducto)) { // Si existe el producto
@@ -70,15 +71,17 @@ public class Maquina {
 		        if (saldo >= precioProducto) { // Si el saldo es mayor o igual al precio del producto se devuelve el cambio y se dispensa el producto
 		        	
 		            saldo -= precioProducto;
-		            
-		            resultado += "\nGracias por su compra " + "\n\nPuede recoger su " + producto.getNombre() + "\n\nSu cambio es: " + monedero.devolverCambio(saldo) + "\n";
+		            resultado += "\nGracias por su compra " + "\n\nPuede recoger su " + producto.getNombre() + "\n\nSu cambio es: " + saldo + monedero.devolverCambio(saldo) + "\n";
+		            saldo = 0;
 		            
 		        } else { // Sino se pide que se introduzcan mas monedas
 		            resultado += "\nIntroduce más monedas.\n";
 
 		        }
 		    } else {
+		    	saldo += valorMoneda;
 		        resultado += "\nEl producto NO está disponible!\n";
+		        resultado += "\nDevolviendo dinero: " + saldo + monedero.devolverCambio(saldo) + "\n";
 		        
 		    }
 		    return resultado;
