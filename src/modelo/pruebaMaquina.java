@@ -27,13 +27,13 @@ public class pruebaMaquina {
 			if (comprobarEntrada(opcion) == true) {
 				
 			while (!comprar) {
-					
-					
-			        System.out.print("\nIntroduce una moneda de 1, 2, 10, 20 o 50 centimos: ");
+						
+			        System.out.print("\nIntroduce una moneda de 100, 200, 10, 20 o 50 centimos: ");
 			        int valorMoneda = in1.nextInt();		        
 			        String resultado = maquina1.comprarProducto(opcion, valorMoneda);
 			        System.out.println(resultado);
 					System.out.println(maquina1);
+					
 			        if(resultado.contains("compra")) {
 			        	break;
 			        }

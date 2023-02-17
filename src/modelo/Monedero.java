@@ -4,11 +4,10 @@ import java.util.ArrayList;
 
 public class Monedero {
 	private ArrayList<Moneda> monedas;
-	private int cantidadMaximaMonedas;
 	
-	public Monedero(ArrayList<Moneda> monedas, int cantidadMaximaMonedas) {
+	
+	public Monedero(ArrayList<Moneda> monedas) {
 		monedas = new ArrayList<>();
-		this.cantidadMaximaMonedas = cantidadMaximaMonedas;
 	}
 	
 	public Monedero() {
@@ -19,12 +18,6 @@ public class Monedero {
 	}
 	public void setMonedas(ArrayList<Moneda> monedas) {
 		this.monedas = monedas;
-	}
-	public int getCantidadMaximaMonedas() {
-		return cantidadMaximaMonedas;
-	}
-	public void setCantidadMaximaMonedas(int cantidadMaximaMonedas) {
-		this.cantidadMaximaMonedas = cantidadMaximaMonedas;
 	}
 	
 	public boolean comprobarMoneda(int valorMoneda) { //Metodo que a partir de un valor entero comprueba si el valor es valido
@@ -58,9 +51,7 @@ public class Monedero {
         }
         return total;
     }
-    
-   
-    
+       
     public String devolverCambio(int cambio) { //Metodo para devolver el cambio segun un valor entero
     	String resultado = "";
     	
@@ -107,9 +98,9 @@ public class Monedero {
         return resultado;
         
     }
-
     public void vaciarMonedero() {
         monedas.clear();
     }
+    
 }
 

@@ -29,10 +29,6 @@ public class Producto {
 	public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-
-    public void restarCantidad(int cantidad) {
-        this.cantidad -= cantidad;
-    }
     
     @Override
 	public boolean equals(Object obj) {
@@ -52,6 +48,5 @@ public class Producto {
 		return String.format(
         		".  %-15s %-5s centimos     %10s Unidades\n",
                 nombre, precio, cantidad);
-                
 	}
 }
