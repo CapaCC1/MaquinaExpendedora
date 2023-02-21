@@ -96,6 +96,29 @@ public class Dispensador {
 	    return nombreProducto;
 	    }
 	
+	public int buscarCantidadProducto(int posicion) {
+		
+		int cantidadProducto = 0;
+		if(posicion >= 0 && posicion < productosDisponibles.size()) {
+			Producto producto = productosDisponibles.get(posicion);
+			
+			cantidadProducto = producto.getCantidad();
+		}
+		return cantidadProducto;
+	}
+	
+	public int setCantidadProducto(int posicion, int cantidad) {
+		
+		int cantidadProducto = 0;
+		if(posicion >= 0 && posicion < productosDisponibles.size()) {
+			Producto producto = productosDisponibles.get(posicion);
+			
+			cantidadProducto = producto.getCantidad();
+			producto.setCantidad(cantidad);
+		}
+		return cantidadProducto;
+	}
+	
 		
 	 @Override
 	  public String toString() {

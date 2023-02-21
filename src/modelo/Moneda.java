@@ -10,6 +10,8 @@ public class Moneda {
 		this.cantidadMonedas = cantidadMonedas;
 	}
 
+	
+
 	public int getValor() {
 		return valor;
 	}
@@ -25,6 +27,14 @@ public class Moneda {
 	public void setValor(int valor) {
 		this.valor = valor;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+			sb.append(cantidadMonedas + " moneda/s de " + valor + " Centimos\n");
+		return sb.toString();
+	}
+	
 	
 	
 }

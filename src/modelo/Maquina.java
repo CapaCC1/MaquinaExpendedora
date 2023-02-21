@@ -25,9 +25,28 @@ public class Maquina {
 		this.saldo = saldo;
 	}
 	
+	public String aniadirCantidadProducto(int posicion, int cantidad) {
+		String resultado = "";
+		String nombreProducto = "";
+		int cantidadActual = 0;
+		if(dispensador.tieneProducto(posicion)){
+			nombreProducto = dispensador.buscarNombreProducto(posicion);
+			cantidadActual = dispensador.buscarCantidadProducto(posicion);
+			dispensador.setCantidadProducto(posicion, cantidadActual + cantidad);
+			resultado += "\nEl producto " + nombreProducto + " ha sido rellenado con " + cantidad + " UDs\n";
+		}else {
+			resultado += "Producto NO Disponible!";
+		}
+		return resultado;
+	}
+	
+	public String mostrarMonedas() {
+		return monedero.getMonedas().toString();
+	}
+	
 	private boolean procesarMoneda(int valorMoneda) { //Comprueba si la moneda introducida es correcta
 		if (monedero.comprobarMoneda(valorMoneda)) {
-			saldo = valorMoneda;
+			saldo += valorMoneda;
 	            return true;
 	        } else {
 	            return false;
@@ -63,7 +82,6 @@ public class Maquina {
 	@Override
 	public String toString() {
     	return dispensador.toString();
-	
 		}
 	}
 

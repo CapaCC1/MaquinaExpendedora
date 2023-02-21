@@ -12,6 +12,11 @@ public class Monedero {
 	
 	public Monedero() {
         monedas = new ArrayList<Moneda>();
+        monedas.add(new Moneda(100,40));
+        monedas.add(new Moneda(200,40));
+        monedas.add(new Moneda(10,40));
+        monedas.add(new Moneda(20,40));
+        monedas.add(new Moneda(50,40));
     }
 	public ArrayList<Moneda> getMonedas() {
 		return monedas;
@@ -39,12 +44,13 @@ public class Monedero {
 	        monedaAceptada = true;
 	        break;
 	        default:
-	            monedaAceptada = false;
-	            break;
+	        monedaAceptada = false;
+	        break;
 	    }
 	    return monedaAceptada;
 	}
-    public int calcularTotal() {
+
+	public int calcularTotal() {
         int total = 0;
         for (Moneda moneda : monedas) {
             total += moneda.getValor();
@@ -101,6 +107,7 @@ public class Monedero {
     public void vaciarMonedero() {
         monedas.clear();
     }
+    
     
 }
 
