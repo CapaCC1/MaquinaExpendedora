@@ -1,23 +1,20 @@
 package modelo;
 
-import java.util.ArrayList;
-
 public class Maquina {
 	
 	private Dispensador dispensador;
     private Monedero monedero;
     private int saldo = 0;
     
-    public Maquina(Dispensador dispensador, Monedero monedero, ArrayList<Producto> productosDisponibles) {
+    public Maquina(Dispensador dispensador, Monedero monedero) {
     	
     	monedero = new Monedero();
-    	dispensador = new Dispensador(productosDisponibles);
+    	dispensador = new Dispensador();
     }
 	
     public Maquina() {
     	monedero = new Monedero();
     	dispensador = new Dispensador();
-    	
     }
     
 	public int getSaldo() {
@@ -30,7 +27,7 @@ public class Maquina {
 	
 	private boolean procesarMoneda(int valorMoneda) { //Comprueba si la moneda introducida es correcta
 		if (monedero.comprobarMoneda(valorMoneda)) {
-			saldo += valorMoneda;
+			saldo = valorMoneda;
 	            return true;
 	        } else {
 	            return false;

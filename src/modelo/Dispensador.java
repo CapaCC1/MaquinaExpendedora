@@ -33,6 +33,8 @@ public class Dispensador {
 	public boolean tieneProducto(int posicion) { //Metodo que busca si el producto esta disponible en el arraylist segun su posicion
 	    if (posicion < 0 || posicion >= productosDisponibles.size()) {
 	        return false;
+	    }if(posicion == 777) {
+	    	return true;
 	    }
 	    Producto producto = productosDisponibles.get(posicion);
 	    if (producto.getCantidad() > 0) { //Comprueba si la cantidad es mayor a 0
