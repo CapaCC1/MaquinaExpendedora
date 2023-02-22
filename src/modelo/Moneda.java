@@ -3,25 +3,13 @@ package modelo;
 public class Moneda {
 	
 	private int valor;
-	private int cantidadMonedas;
 	
-	public Moneda(int valor, int cantidadMonedas) {
+	public Moneda(int valor) {
 		this.valor = valor;
-		this.cantidadMonedas = cantidadMonedas;
 	}
-
-	
 
 	public int getValor() {
 		return valor;
-	}
-
-	public int getCantidadMonedas() {
-		return cantidadMonedas;
-	}
-
-	public void setCantidadMonedas(int cantidadMonedas) {
-		this.cantidadMonedas = cantidadMonedas;
 	}
 
 	public void setValor(int valor) {
@@ -31,7 +19,7 @@ public class Moneda {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-			sb.append(cantidadMonedas + " moneda/s de " + valor + " Centimos\n");
+			sb.append(valor + " Centimos\n");
 		return sb.toString();
 	}
 	
